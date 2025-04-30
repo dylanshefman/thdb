@@ -1,0 +1,13 @@
+name: Fetch GTFS Realtime
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"  # Runs every 15 minutes UTC
+  workflow_dispatch:  # Allows manual triggering via GitHub Actions UI
+
+jobs:
+  fetch-rt:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Netlify function to fetch GTFS realtime
+        run: curl -s https://transithealthdashboard.netlify.app/.netlify/functions/fetch_gtfs_rt
